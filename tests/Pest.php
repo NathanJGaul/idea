@@ -15,8 +15,9 @@ use Tests\TestCase;
 */
 
 pest()->extend(TestCase::class)
+    ->group('tests')
     ->use(RefreshDatabase::class)
-    ->in('Browser', 'Unit');
+    ->in('Browser', 'Feature', 'Unit');
 
 /*
 |--------------------------------------------------------------------------
