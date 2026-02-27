@@ -1,0 +1,11 @@
+{
+    "mcpServers": {
+        "laravel-boost": {
+            "command": "C:\\Users\\natha\\.config\\herd-lite\\bin\\php.exe",
+            "args": [
+                "C:\\Users\\natha\\Herd\\idea\\artisan",
+                "boost:mcp"
+            ]
+        }
+    }
+}
