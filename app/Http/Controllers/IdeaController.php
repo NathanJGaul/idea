@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\IdeaRequest;
 use App\Models\Idea;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Auth;
 
 class IdeaController extends Controller
 {
@@ -14,9 +15,9 @@ class IdeaController extends Controller
 
     public function index()
     {
-        $this->authorize('viewAny', Idea::class);
-
-        return Idea::all();
+        return view('ideas.index', [
+            'ideas' => Auth::user()->ideas()->latest()->get(),
+        ]);
     }
 
     public function store(IdeaRequest $request)

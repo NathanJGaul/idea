@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\IdeaStatus;
 use App\Models\Idea;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -20,6 +21,7 @@ class IdeaFactory extends Factory
             'links' => [fake()->url()],
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
+            'status' => fake()->randomElement(IdeaStatus::cases()),
         ];
     }
 }
