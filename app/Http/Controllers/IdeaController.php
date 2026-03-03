@@ -10,6 +10,7 @@ use App\Models\Idea;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class IdeaController extends Controller
 {
@@ -43,11 +44,13 @@ class IdeaController extends Controller
         return $request->user()->ideas()->create($request->validated());
     }
 
-    public function show(Idea $idea): Idea
+    public function show(Idea $idea): View
     {
         $this->authorize('view', $idea);
 
-        return $idea;
+        return view('ideas.show', [
+            'idea' => $idea,
+        ]);
     }
 
     public function update(IdeaRequest $request, Idea $idea): Idea
@@ -65,6 +68,6 @@ class IdeaController extends Controller
 
         $idea->delete();
 
-        return response()->json();
+        return redirect(route('idea.index'));
     }
 }
