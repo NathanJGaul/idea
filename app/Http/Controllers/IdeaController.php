@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Http\Requests\IdeaRequest;
+use App\IdeaStatus;
 use App\Models\Idea;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
@@ -16,14 +17,22 @@ class IdeaController extends Controller
 
     public function index(Request $request)
     {
-        $ideas = Auth::user()
+        $user = Auth::user();
+
+        $status = $request->status;
+
+        if (! in_array($status, IdeaStatus::values())) {
+            $status = null;
+        }
+
+        $ideas = $user
             ->ideas()
-            ->when($request->status, fn ($query, $status) => $query->where('status', $status))
+            ->when($status, fn ($query, $status) => $query->where('status', $status))
             ->get();
 
         return view('ideas.index', [
             'ideas' => $ideas,
-            'statusCounts' => Idea::statusCounts(Auth::user()),
+            'statusCounts' => Idea::statusCounts($user),
         ]);
     }
 

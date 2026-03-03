@@ -1,5 +1,7 @@
 <?php
 
+use App\IdeaStatus;
+
 test('it renders pending status correctly', function () {
     $view = $this->blade('<x-status-label status="pending">Pending</x-status-label>');
 
@@ -28,7 +30,7 @@ test('it renders completed status correctly', function () {
 });
 
 test('it renders using enum instance', function () {
-    $status = \App\IdeaStatus::COMPLETED;
+    $status = IdeaStatus::COMPLETED;
     $view = $this->blade('<x-status-label :status="$status">Completed</x-status-label>', ['status' => $status]);
 
     $view->assertSee('Completed');

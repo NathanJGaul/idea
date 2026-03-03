@@ -21,7 +21,7 @@ class SessionsController extends Controller
             'password' => ['required', 'string', 'min:8', 'max:255'],
         ]);
 
-        if (!Auth::attempt($attributes)) {
+        if (! Auth::attempt($attributes)) {
             return back()->withErrors(['password' => 'We were unable to authenticate your credentials'])->withInput();
         }
 

@@ -1,6 +1,6 @@
 <?php
 
-it('registers a new user', function() {
+it('registers a new user', function () {
     visit('/register')
         ->fill('name', 'Test User')
         ->fill('email', 'test@user.com')
@@ -16,7 +16,7 @@ it('registers a new user', function() {
     ]);
 });
 
-it('fails to register a new user due to invalid email', function() {
+it('fails to register a new user due to invalid email', function () {
     visit('/register')
         ->fill('name', 'Test User')
         ->fill('email', 'test')
@@ -25,7 +25,7 @@ it('fails to register a new user due to invalid email', function() {
         ->assertPathIs('/register');
 });
 
-it('fails to register a new user due to name less than 4 characters long', function() {
+it('fails to register a new user due to name less than 4 characters long', function () {
     visit('/register')
         ->fill('name', 'Te')
         ->fill('email', 'test@user.com')
@@ -35,7 +35,7 @@ it('fails to register a new user due to name less than 4 characters long', funct
         ->assertSee('The name field must be at least 4 characters.');
 });
 
-it('fails to register a new user due to the password being less than 8 characters long', function() {
+it('fails to register a new user due to the password being less than 8 characters long', function () {
     visit('/register')
         ->fill('name', 'Test User')
         ->fill('email', 'test@user.com')

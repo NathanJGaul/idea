@@ -2,7 +2,7 @@
 
 use App\Models\User;
 
-it('logs in a user', function() {
+it('logs in a user', function () {
     // create a new user with the user factory
     $user = User::factory()->create([
         'password' => bcrypt('password'),
@@ -22,7 +22,7 @@ it('logs in a user', function() {
     ]);
 });
 
-it('logs out user', function() {
+it('logs out user', function () {
     // create a new user with the user factory
     $user = User::factory()->create();
 
